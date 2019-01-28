@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">获取所有的菜品类别</button>
+    <button id="btn2">删除菜品</button>
+    <button id="btn3">添加新的菜品类别</button>
+    <button id="btn4">修改菜品类别</button>
+<script src="../axios.min.js"></script>
+<script>
+    btn1.onclick=function(){
+        axios.get('http://127.0.0.1:8090/admin/category').then((result)=>{
+            console.log(result.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    btn2.onclick=function(){
+        //put/delete请求之前浏览器会先提交一个预取请求--preflightREQUEST 
+        //请求方法为options 目的是询问服务器是否支持接下来的请求方法
+        axios.delete('http://127.0.0.1:8090/admin/category/1').then((result)=>{
+            console.log(result)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    btn3.onclick=function(){
+        //向服务器发送json格式的请求数据
+        var data={cname:'甜品类'}
+        axios.post('http://127.0.0.1:8090/admin/category',data).then((result)=>{
+            console.log("添加新类别成功")
+            console.log(result.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+    btn4.onclick=function(){
+        //向服务器发送json格式的请求数据
+        var data={cid:1,cname:'肉类'}
+        axios.put('http://127.0.0.1:8090/admin/category',data).then((result)=>{
+            //console.log("修改类别成功")
+            console.log(result.data)
+        }).catch((err)=>{
+            console.log(err)
+        })
+    }
+</script>
+</body>
+</html>
