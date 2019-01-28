@@ -50,9 +50,11 @@ CREATE TABLE xfn_reservation(
     contactName	VARCHAR(64),            #联系人姓名
     phone	VARCHAR(16),                #联系电话
     contactTime	BIGINT,                 #联系时间
-    dinnerTime	BIGINT                  #预约的用餐时间
+    dinnerTime	BIGINT,                  #预约的用餐时间
+    tableId INT,
+    FOREIGN KEY(tableId) REFERENCES xfn_table(tid)
 );
-INSERT INTO xfn_reservation VALUES(NULL,'李文华','13854621256',1548404910683,1548414000000);
+INSERT INTO xfn_reservation VALUES(NULL,'李文华','13854621256',1548404910683,1548414000000,1);
 
 #创建菜品分类表
 CREATE TABLE xfn_category(
