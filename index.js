@@ -2,6 +2,8 @@
  * 小肥牛的点餐系统api子系统
  * 
  */
+//console.log('准备启动API服务器')
+//console.log(new Date().toLocaleDateString())
 const port=8090;
 const express=require('express')
 const bodyParser=require('body-parser')
@@ -15,5 +17,5 @@ app.use(bodyParser.urlencoded({
     extended:false
 }))
 app.use(cors(
-    res.header('Access-Control-Allow-Origin', '*')
+    // res.header('Access-Control-Allow-Origin', '*')
 ))
