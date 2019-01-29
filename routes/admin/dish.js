@@ -89,5 +89,37 @@ router.post('/',(req,res)=>{
  */
 router.delete('/:did',(req,res)=>{
   var did=req.params.did;
-  //先查询,再删除
+  //先查询其外键约束,将其设置为NULL;dishId
+  pool.query('UPDATE xfn_order_detail SET dishId=NULL WHERE dishId=?',did,(err,result)=>{
+    if(err)throw err
+    pool.query('DELETE FROM xfn_dish WHERE did=?',did,(err,result)=>{
+      if(err) throw err;
+      if(result.affectedRows>0){
+        res.send({code:200,msg:'1 dish deleted'})
+      }else{
+        res.send({code:400,msg:'0 dish deleted'})
+      }
+    })
+  })
+})
+/**
+ * API: PUT /admin/dish
+ * 请求参数:{title:'xxx',price:xx}
+ * 根据菜品编号修改菜品信息
+ * 返回数据{code:200,msg:'1 dish modified succ'}
+ * {code:400,msg:'0 dish modified,not exists'}编号不存在
+ * {code:401,msg:'0 dish modified ,no modifition'}两次相同
+ */
+router.put('/',(req,res)=>{
+  var data=req.body;
+  pool.query('UPDATE xfn_dish SET ? WHERE did=?',[data,data.did],(err,result)=>{
+    if(err)throw err;
+    if(result.changedRows>0){
+      res.send({code:200,msg:'1 dish modified succ'})
+    }else if(result.affectedRows==0){
+      res.send({code:400,msg:'0 dish modified,not exists'})
+    }else if(result.affectedRows==1&&result.changedRows==0){
+      res.send({code:401,msg:'0 dish modified ,no modifition'})
+  }
+  })
 })

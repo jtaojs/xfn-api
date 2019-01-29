@@ -62,7 +62,19 @@
             })
         }
         btn5.onclick=function(){
-            axios.delete('http://127.0.0.1:8090/admin/dish/3').then((result)=>{
+            axios.delete('http://127.0.0.1:8090/admin/dish/4').then((result)=>{
+                console.log(result.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        btn6.onclick=function(){
+            var data={
+                title:'蜗牛',
+                price:88,
+                did:1000
+            }
+            axios.put("http://127.0.0.1:8090/admin/dish",data).then((result)=>{
                 console.log(result.data)
             }).catch((err)=>{
                 console.log(err)

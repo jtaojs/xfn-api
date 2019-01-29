@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">获取所有桌台信息</button>
+    <button id="btn2">x</button>
+    <button id="btn3">获取所有桌台信息</button>
+    <button id="btn4">修改桌台的状态</button>
+    <button id="btn5">获取所有桌台信息</button>
+    <button id="btn6">获取所有桌台信息</button>
+    <script src="../axios.min.js"></script>
+    <script>
+        btn1.onclick=function(){
+            axios.get('http://127.0.0.1:8090/admin/table').then((result)=>{
+                console.log(result.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        btn2.onclick=function(){
+            axios.get('http://127.0.0.1:8090/admin/table/reservation/5').then((result)=>{
+                console.log(result)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        btn3.onclick=function(){
+            axios.get('http://127.0.0.1:8090/admin/table/inuse/3').then((result)=>{
+                console.log(result)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        btn4.onclick=function(){
+            var data={
+                tid:3,
+                status:8
+            }
+            axios.patch('http://127.0.0.1:8090/admin/table',data).then((result)=>{
+                console.log(result.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+        btn5.onclick=function(){
+            var data={
+                tname:'暗影岛',
+                type:3,
+                status:3
+            }
+            axios.post('http://127.0.0.1:8090/admin/table',data).then((result)=>{
+                console.log(result.data)
+            }).catch((err)=>{
+                console.log(err)
+            })
+        }
+
+    </script>
+</body>
+</html>
