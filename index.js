@@ -17,6 +17,7 @@ var app=express()
 app.listen(port,()=>{
     console.log("服务正在监听"+port)
 })
+//bodyparser文件配置
 app.use(bodyParser.json())//吧json格式的请求主体解析出来放入req.body属性
 //使用跨域中间件
 app.use(cors({
