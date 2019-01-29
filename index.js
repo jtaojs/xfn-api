@@ -5,6 +5,7 @@
 //导入路由器
 const categoryRouter=require('./routes/admin/category')
 const adminRouter=require('./routes/admin/admin')
+const dishRouter=require('./routes/admin/dish')
 //console.log('准备启动API服务器')
 //console.log(new Date().toLocaleDateString())
 const port=8090;
@@ -27,3 +28,4 @@ app.use(cors({
 //挂载路由器
 app.use('/admin/category',categoryRouter)
 app.use('/admin',adminRouter)
+app.use('/admin/dish',dishRouter)
