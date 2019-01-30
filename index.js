@@ -24,7 +24,7 @@ app.use(bodyParser.json())//吧json格式的请求主体解析出来放入req.bo
 //使用跨域中间件
 app.use(cors({
     origin: ["http://127.0.0.1:5500",
-    "http://localhost:5500"
+    "http://127.0.0.1:8091"
     ],
     credentials: true
      }));
