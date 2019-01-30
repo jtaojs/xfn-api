@@ -43,7 +43,7 @@ const multer=require('multer')
 const fs=require('fs')
 var upload=multer({dest:'tmp/'})//指定客户端上传的文件临时存储路径
 router.post('/image',upload.single('dishImg'),(req,res)=>{
-  //console.log(req.file)//客户端上传的图片
+  //console.log(req.file)//客户端上传的图片文件信息
   //console.log(req.body)//客户端随同图片提交的字符数据
   //把客户端上传的文件从临时目录转移到永久的图片路径下
   var tmpFile=req.file.path;//临时文件路径

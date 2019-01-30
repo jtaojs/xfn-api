@@ -59,7 +59,13 @@
                 console.log(err)
             })
         }
-
+btn6.onclick=function(){
+    axios.delete('http://127.0.0.1:8090/admin/table/3').then((result)=>{
+                console.log(result)
+            }).catch((err)=>{
+                console.log(err)
+            })
+}
     </script>
 </body>
 </html>

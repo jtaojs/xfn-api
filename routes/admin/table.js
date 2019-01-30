@@ -80,5 +80,21 @@ router.patch('/',(req,res)=>{
       })
       
      /**
-     * API:DELETE /admin/table  删除桌台
+     * API:DELETE /admin/table/:tid  删除桌台
+     * 
      */
+    router.delete('/:tid',(req,res)=>{
+        var tid=req.params.tid;
+        //先查询其外键约束,将其设置为NULL;tableId
+        pool.query('UPDATE xfn_order SET tableId=NULL WHERE tableId=?',tid,(err,result)=>{
+          if(err)throw err
+          pool.query('DELETE FROM xfn_table WHERE tid=?',tid,(err,result)=>{
+            if(err) throw err;
+            if(result.affectedRows>0){
+              res.send({code:200,msg:'1 table deleted'})
+            }else{
+              res.send({code:400,msg:'0 table deleted'})
+            }
+          })
+        })
+      })
