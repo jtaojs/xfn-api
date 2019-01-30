@@ -9,23 +9,21 @@ module.exports=router;
  * 返回数据:[{...}]
  */
 router.get('/',(req,res)=>{
-    pool.query('SELECT * FROM xfn_settings',(err,result)=>{
+    pool.query('SELECT * FROM xfn_settings LIMIT 1',(err,result)=>{
         if(err) throw err
-            res.send(result)
+            res.send(result[0])
     })
 })
-
-
  /**
   * API: PUT /admin/settings  修改全局设置
-  * 请求参数:{...}
+  * 请求参数:{...}JSON对象
   * 返回数据:{code:200,msg:"1 settings modified"}
   * {code:400,msg:"0 settings modified not exiets"}
   * {code:401,msg:"1 settings modified no modifition"}
   */
  router.put('/',(req,res)=>{
      var data=req.body;
-     pool.query('UPDATE xfn_settings SET ? WHERE sid=?',[data,data.sid],(err,result)=>{
+     pool.query('UPDATE xfn_settings SET ?',[data],(err,result)=>{
          if(err)throw err;
          if(result.changedRows>0){
              res.send({code:200,msg:"1 settings modified"})
