@@ -9,9 +9,9 @@ var pool=mysql.createPool({
   // connectionLimit: 15   //链接池中链接数量
   host    :process.env.MYSQL_HOST,
   port    :process.env.MYSQL_PORT,
-  user    :process.env.MYSQL_ACCESSKEY,
-  password:process.env.MYSQL_SECRETKEY,
-  database:'app_'+process.env.MYSQL_APPNAME,
+  user    :process.env.ACCESSKEY,
+  password:process.env.SECRETKEY,
+  database:'app_'+process.env.APPNAME,
   connectionLimit: 3
 });
 //将来要被其它的模块使用
