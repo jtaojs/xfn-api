@@ -29,6 +29,9 @@ app.use(cors({
     ],
     credentials: true
      }));
+     app.get('/test',(req,res)=>{
+         res.send({code:200,msg:'test succ'})
+     })
 //挂载路由器
 app.use('/admin/category',categoryRouter)
 app.use('/admin',adminRouter)
