@@ -17,7 +17,7 @@ const bodyParser=require('body-parser')
 const cors=require('cors')
 //启动主服务器
 var app=express()
-app.listen(port,()=>{
+app.listen(port,()=>{    
     console.log("服务正在监听"+port)
 })
 //bodyparser文件配置
