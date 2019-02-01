@@ -10,7 +10,8 @@ const settingsRouter=require('./routes/admin/settings')
 const tableRouter=require('./routes/admin/table')
 //console.log('准备启动API服务器')
 //console.log(new Date().toLocaleDateString())
-const port=8090;
+//const port=8090;
+const port=5050;
 const express=require('express')
 const bodyParser=require('body-parser')
 const cors=require('cors')
